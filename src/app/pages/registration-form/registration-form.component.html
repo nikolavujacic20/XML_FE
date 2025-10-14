@@ -1,0 +1,91 @@
+<mat-card style="padding: 30px; border-radius: 20px">
+  <mat-card-title  style="text-shadow: 3px 3px 3px lightsteelblue;">Registration</mat-card-title>
+ 
+  <mat-card-content>
+    <p style="margin-top: 10px">
+      <mat-form-field class="example-full-width" style="width: 49%; margin-right: 1%" appearance="outline">
+        <mat-label>Email address</mat-label>
+        <input type="email" matInput [(ngModel)]="email" [formControl]="emailFormControl"
+               placeholder="e.g. pat@example.com">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address.
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email address is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="width: 49%; margin-left: 1%" appearance="outline">
+        <mat-label>Phone number</mat-label>
+        <input matInput type="tel" [(ngModel)]="phoneNumber" [formControl]="phoneFormControl"
+               placeholder="e.g. +381 1234567">
+        <mat-error *ngIf="phoneFormControl.hasError('required')">
+          Phone number is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p style="margin-top: -10px">
+      <mat-form-field style="width: 49%; margin-right: 1%" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" [formControl]="passwordFormControl">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="passwordFormControl.hasError('minlength')  && !passwordFormControl.hasError('required')">
+          Password must be at least <strong>6 characters</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="width: 49%; margin-left: 1%" appearance="outline">
+        <mat-label>Repeat password</mat-label>
+        <input matInput [type]="hide2 ? 'password' : 'text'" [(ngModel)]="password2"
+               [formControl]="password2FormControl">
+        <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide2">
+          <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password2FormControl.hasError('required')">
+          Repeat password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="password !== password2">
+          Passwords do not match
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p style="margin-top: -10px">
+      <mat-form-field style="width: 49%; margin-right: 1%" appearance="outline">
+        <mat-label>First name</mat-label>
+        <input matInput [formControl]="nameFormControl" [(ngModel)]="name">
+        <mat-error *ngIf="nameFormControl.hasError('required')">
+          First name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="width: 49%; margin-left: 1%" appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input matInput [formControl]="lastNameFormControl" [(ngModel)]="lastName">
+        <mat-error *ngIf="lastNameFormControl.hasError('required')">
+          Last name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p style="margin-top: -10px">
+      <mat-form-field style="width: 100%" appearance="outline">
+        <mat-label>User role</mat-label>
+        <mat-select [(ngModel)]="userRole">
+          <mat-option value="GRADJANIN">Citizen</mat-option>
+          <mat-option value="SLUZBENIK">Official</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <div style="display: flex; justify-content: space-between; gap: 8px; align-content: center;">
+      <button mat-raised-button color="primary" style="width: 100%;" (click)="registerNewUser()">
+        Create Account
+      </button>
+      <button mat-stroked-button color="secondary" style="width: 100%;"
+      (click)="switchToLoginForm()">Log In
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

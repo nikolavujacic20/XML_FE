@@ -1,0 +1,36 @@
+<mat-card style="padding: 30px; border-radius: 20px ">
+  <mat-card-title style="text-shadow: 3px 3px 3px lightsteelblue;">Author Rights</mat-card-title>
+  <mat-card-content>
+    <mat-form-field style="width: 100%; margin-top: 20px" appearance="outline">
+      <mat-label>Enter email address</mat-label>
+      <input type="email" matInput [formControl]="emailFormControl" [(ngModel)]="email"
+             placeholder="e.g. pat@example.com">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address.
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email address is <strong>required</strong>.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field style="width: 100%; margin-top: 20px" appearance="outline">
+      <mat-label>Enter password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" [(ngModel)]="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <div style="display: flex; justify-content: space-between; gap: 8px; align-content: center;">
+
+      <button mat-raised-button color="primary" style="width: 100%;"
+      (click)="login()">Log In
+    </button>
+     <button mat-stroked-button color="secondary" style="width: 100%;"
+     (click)="switchToRegisterForm()">Create Account
+    </button>
+  </div>
+  </mat-card-content>
+</mat-card>
