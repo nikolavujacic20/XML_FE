@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Generisanje izveštaja</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline" style="width: 100%; margin-top: 10px">
+    <mat-label>Vremenski period</mat-label>
+    <mat-date-range-input
+      [formGroup]="dateRange"
+      [rangePicker]="campaignOnePicker">
+      <input matStartDate placeholder="Početak" [(ngModel)]="pocetak" formControlName="start">
+      <input matEndDate placeholder="Kraj" [(ngModel)]="kraj" formControlName="end">
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+    <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="generisi()" style="width: 100%;">
+    <mat-icon color="primary">download</mat-icon>
+    Generiši izveštaj
+  </button>
+</div>

@@ -1,0 +1,20 @@
+<mat-card >
+  <mat-card-header >
+    <mat-card-subtitle>{{zahtev.datumPodnosenja.slice(0, 10)}}</mat-card-subtitle>
+    <mat-card-title> {{zahtev.brojPrijave}} </mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="text-align: left">
+    <p style="margin-top: 10px; margin-bottom: 5px">Email: {{zahtev.podnosiocEmail}}</p>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary" (click)="detaljiOZahtevu(zahtev.brojPrijave, zahtev.obradjen)">
+      <span *ngIf="!zahtev.obradjen">
+      OBRADI ZAHTEV
+      </span>
+      <span *ngIf="zahtev.obradjen">
+      DETALJI
+      </span>
+    </button>
+  </mat-card-actions>
+</mat-card>

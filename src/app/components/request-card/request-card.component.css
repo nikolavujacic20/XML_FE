@@ -1,0 +1,8 @@
+mat-card {
+  background-color: white;
+  background-image:
+    linear-gradient(
+      to top right,
+      white, #E8E8E8
+    );
+}

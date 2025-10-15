@@ -1,0 +1,59 @@
+<div style="margin: 20px">
+  <div *ngIf="obradjen">
+    <h4 style="color: gray">OBRAĐEN ZAHTEV</h4>
+    <h1>{{brojPrijave}}</h1>
+    <p>Datum obrade: {{datumObrade}}</p>
+    <p>Službenik: {{sluzbenik}}
+      <span style="color: gray">({{sluzbenikEmail}})</span>
+    </p>
+    <p>Status zahteva:
+      <span *ngIf="!odbijen" style="color: darkgreen; font-weight: 500">PRIHVAĆEN</span>
+      <span *ngIf="odbijen" style="color: darkred; font-weight: 500">ODBIJEN</span>
+    </p>
+    <p *ngIf="detaljiOZahtevu.obrada?.odbijen">Razlog odbijanja:
+      <span style="color:gray">{{detaljiOZahtevu.obrada?.razlogOdbijanja}}</span>
+    </p>
+    <button mat-raised-button color="primary" style="width: 100%;" (click)="downloadResenje()">
+      <mat-icon>download</mat-icon>
+      REŠENJE ZAHTEVA
+    </button>
+  </div>
+  <div *ngIf="!obradjen">
+    <h4 style="color: gray">NEOBRAĐEN ZAHTEV</h4>
+    <h1>{{brojPrijave}}</h1>
+    <mat-form-field style="width: 100%;" *ngIf="odbija">
+      <mat-label>Unesite razlog odbijanja</mat-label>
+      <textarea [(ngModel)]="razlogOdbijanja" matInput placeholder="Npr. nije priložen dokument o..."
+                required></textarea>
+    </mat-form-field>
+    <div style="width: 100%; margin-bottom: 5px">
+      <button style="width: 49%" mat-raised-button color="primary" mat-dialog-close="true"
+              (click)="obradiZahtev(false)">PRIHVATI ZAHTEV
+      </button>
+      <button style="width: 49%; float: right" mat-raised-button color="warn" (click)="odbijanjeZahteva()">ODBIJ ZAHTEV
+      </button>
+    </div>
+  </div>
+  <button mat-flat-button style="width: 100%; margin-bottom: 5px" [matMenuTriggerFor]="menu" color="primary">
+    <mat-icon>download</mat-icon>
+    Preuzimanje
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="downloadPDF()">
+      <mat-icon color="primary">picture_as_pdf</mat-icon>
+      Zahtev u PDF formatu
+    </button>
+    <button mat-menu-item (click)="downloadHTML()">
+      <mat-icon color="primary">html</mat-icon>
+      Zahtev u HTML formatu
+    </button>
+    <button mat-menu-item (click)="downloadJSON()">
+      <mat-icon color="primary">data_object</mat-icon>
+      Metapodaci u JSON formatu
+    </button>
+    <button mat-menu-item (click)="downloadRDF()">
+      <mat-icon color="primary">filter_3</mat-icon>
+      Metapodaci u RDF formatu
+    </button>
+  </mat-menu>
+</div>

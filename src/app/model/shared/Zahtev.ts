@@ -1,28 +1,28 @@
 import {SimpleUser} from "./User";
 
-export class Request {
-  applicationNumber: string;
-  submissionDate: string;
-  submitterEmail: string;
-  processed: boolean = false;
+export class Zahtev {
+  brojPrijave: string;
+  datumPodnosenja: string;
+  podnosiocEmail: string;
+  obradjen: boolean = false;
 }
 
-export class RequestDetails  {
-  request: Request = new Request();
-  processing: RequestProcessing  | undefined;
+export class DetaljiOZahtevu  {
+  zahtev: Zahtev = new Zahtev();
+  obrada: ObradaZahteva  | undefined;
 }
 
-export class RequestProcessing  {
-  officer!: SimpleUser;
-  processingDate!: string;
-  rejected: boolean = false;
-  rejectionReason: string = "";
+export class ObradaZahteva  {
+  sluzbenik!: SimpleUser;
+  datumObrade!: string;
+  odbijen: boolean = false;
+  razlogOdbijanja: string = "";
 }
 
-export class RequestProcessingDTO  {
-  officer!: SimpleUser;
-  processingDate!: string;
-  rejected: boolean = false;
-  rejectionReason: string = "";
-  applicationNumber!: string;
+export class ObradaZahtevaDTO  {
+  sluzbenik!: SimpleUser;
+  datumObrade!: string;
+  odbijen: boolean = false;
+  razlogOdbijanja: string = "";
+  brojPrijave!: string;
 }

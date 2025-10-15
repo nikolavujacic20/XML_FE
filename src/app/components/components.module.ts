@@ -20,10 +20,16 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { NavbarComponent } from "./navbar/navbar.component";
+import { GenerateReportsDialogComponent } from "./generate-reports-dialog/generate-reports-dialog.component";
+import { RequestCardComponent } from "./request-card/request-card.component";
+import { DetailsComponent } from "./details/details.component";
 
 @NgModule({
   declarations: [
       NavbarComponent,
+        GenerateReportsDialogComponent,
+          RequestCardComponent,
+            DetailsComponent,
   ],
   imports: [
     MatToolbarModule,
@@ -50,6 +56,7 @@ import { NavbarComponent } from "./navbar/navbar.component";
   ],
   exports: [
    NavbarComponent,
+     RequestCardComponent,
   ],
   bootstrap: []
 })

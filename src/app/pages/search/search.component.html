@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+
+<div style="display: flex; justify-content: center ; align-items: stretch; flex-direction: column; min-width: 50%" >
+    <mat-radio-group [(ngModel)]="trenuniTip" color="primary" style="display: flex; justify-content: center;" >
+      <mat-radio-button value="Pretraga">Pretraga</mat-radio-button>
+      <mat-radio-button value="Napredna pretraga">Napredna pretraga</mat-radio-button>
+    </mat-radio-group>
+   
+
+  <div *ngIf="trenuniTip === 'Pretraga'" label="Pretraga">
+    <div style="margin: 20px" class="text-center">
+      <p style="margin-bottom: -5px">
+        <mat-form-field *ngIf="role === 'SLUZBENIK'" appearance="outline" style="margin-left: 5px">
+          <mat-label>Izaberite status zahteva</mat-label>
+          <mat-select [(ngModel)]="statusZahteva">
+            <mat-option value="prihvaceni">Prihvaceni zahtevi</mat-option>
+            <mat-option value="odbijeni">Odbijeni zahtevi</mat-option>
+            <mat-option value="predati">Predati zahtevi</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 50%; min-width: 200px; margin-left: 5px">
+          <mat-label>Pretraži dokumente po jednoj ili više ključnih reči odvojenim razmakom</mat-label>
+          <input matInput type="text" [(ngModel)]="simpleSearchText">
+          <button matSuffix mat-icon-button color="primary" (click)="searchText()">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="trenuniTip === 'Napredna pretraga'" label="Napredna pretraga">
+    <div style="margin: 20px" class="text-center">
+      <p style="margin-bottom: -5px">
+        <mat-form-field *ngIf="role === 'SLUZBENIK'" appearance="outline" style="margin-left: 5px; margin-right: 5px">
+          <mat-label>Izaberite status zahteva</mat-label>
+          <mat-select [(ngModel)]="statusZahteva">
+            <mat-option value="prihvaceni">Prihvaceni zahtevi</mat-option>
+            <mat-option value="odbijeni">Odbijeni zahtevi</mat-option>
+            <mat-option value="predati">Predati zahtevi</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-stroked-button color="primary" (click)="addMeta()">Dodaj novi metapodatak</button>
+        <button mat-raised-button color="primary" (click)="searchMeta()" style="margin-left: 5px">
+          <mat-icon>search</mat-icon>
+          Pretraži
+        </button>
+      </p>
+
+      <div style="margin: 20px">
+        <div style="display: inline" *ngFor="let item of metapodaci; let i = index" [attr.data-index]="i">
+          <mat-button-toggle-group *ngIf="i === 0" [(ngModel)]="metapodaci[i].operator" style="margin-right: 5px">
+            <mat-button-toggle value="AND">I</mat-button-toggle>
+            <mat-button-toggle value="NOT">NE</mat-button-toggle>
+          </mat-button-toggle-group>
+
+          <mat-button-toggle-group *ngIf="i !== 0" [(ngModel)]="metapodaci[i].operator" style="margin-right: 5px">
+            <mat-button-toggle value="AND">I</mat-button-toggle>
+            <mat-button-toggle value="OR">ILI</mat-button-toggle>
+            <mat-button-toggle value="NOT">NE</mat-button-toggle>
+          </mat-button-toggle-group>
+
+          <mat-form-field appearance="outline" style="margin-right: 5px; min-width: 250px">
+            <mat-label>Vrsta metapodatka</mat-label>
+            <mat-select [(ngModel)]="metapodaci[i].property" required>
+              <mat-option *ngFor="let meta of sviMetapodaci" [value]="meta">{{meta}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="margin-right: 5px; min-width: 250px">
+            <mat-label>Vrednost metapodatka</mat-label>
+            <input matInput type="text" [(ngModel)]="metapodaci[i].value" required>
+          </mat-form-field>
+
+            <button mat-button color="warn" (click)="removeMeta(i)" [disabled]="i === 0">
+              Ukloni metapodatak
+            </button>
+
+          <mat-divider style="margin-bottom: 10px; margin-top: -10px"></mat-divider>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="searched">
+  <div *ngIf="rezultatiPretrage.length == 0" style="text-align: center;">
+    Nema rezultata
+  </div>
+  <div *ngIf="rezultatiPretrage.length > 0">
+    <div style="display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;" >
+      <div *ngFor="let r of rezultatiPretrage" class="col-md-2 text-center"  style="margin: 10px; display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: center ">
+        <app-request-card [zahtev]="r"></app-request-card>
+      </div>
+    </div>
+  </div>
+</div>

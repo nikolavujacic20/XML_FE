@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {AuthService} from "./auth.service";
 import * as JsonToXML from "js2xmlparser";
-import {RequestDetails , RequestProcessingDTO , Request} from "../model/shared/Zahtev";
+import {DetaljiOZahtevu , ObradaZahtevaDTO , Zahtev} from "../model/shared/Zahtev";
 import {MetadataSearchParamsDTO, TextSearchDTO} from "../model/search/SearchParams";
 
 @Injectable({
@@ -48,7 +48,7 @@ export class ZahteviService {
 
   }
 
-  obradiZahtev(obradaZahteva: RequestProcessingDTO ):  Observable<Blob>  {
+  obradiZahtev(obradaZahteva: ObradaZahtevaDTO ):  Observable<Blob>  {
     const xmlZahtev = JsonToXML.parse("obradaZahteva", obradaZahteva);
     let obradaZahtevaPath = this.getObradiZahtevUrl();
     console.log(obradaZahtevaPath)
@@ -97,14 +97,14 @@ export class ZahteviService {
   }
 
 
-  public searchByText(textSearchParams: TextSearchDTO): Observable<Request> {
+  public searchByText(textSearchParams: TextSearchDTO): Observable<Zahtev> {
     const xmlZahtev = JsonToXML.parse("TextSearchDTO", textSearchParams);
-    return this.http.put<Request>(this.getUrl() + "/text-search", xmlZahtev, this.getXmlHttpOptions());
+    return this.http.put<Zahtev>(this.getUrl() + "/text-search", xmlZahtev, this.getXmlHttpOptions());
   }
 
-  public searchByMetadata(metaParams: MetadataSearchParamsDTO): Observable<Request> {
+  public searchByMetadata(metaParams: MetadataSearchParamsDTO): Observable<Zahtev> {
     const xmlZahtev = JsonToXML.parse("MetadataSearchParamsDTO", metaParams);
-    return this.http.put<Request>(this.getUrl() + "/metadata-search", xmlZahtev, this.getXmlHttpOptions());
+    return this.http.put<Zahtev>(this.getUrl() + "/metadata-search", xmlZahtev, this.getXmlHttpOptions());
   }
 
   public getXmlHttpOptions() {

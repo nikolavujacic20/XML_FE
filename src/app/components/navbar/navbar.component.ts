@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../../service/auth.service";
+import { GenerateReportsDialogComponent } from '../generate-reports-dialog/generate-reports-dialog.component';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,11 @@ import {AuthService} from "../../service/auth.service";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+   generateReport() {
+    this.dialog.open(GenerateReportsDialogComponent, {
+      width: '400px',
+    });
+  }
 
   role: string = "GRADJANIN";
 

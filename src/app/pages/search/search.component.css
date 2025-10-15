@@ -1,0 +1,15 @@
+.nonSelectedButton {
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.nonSelectedButton:hover {
+  background-color: lightgray;
+}
+
+.selectedButton,
+.selectedButton:hover {
+  background-color: #673ab7;
+  color: white;
+}

@@ -25,15 +25,16 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { ComponentsModule } from "../components/components.module";
 import { AutorskaPravaComponent } from "./autorska-prava/autorska-prava.component";
+import { SearchComponent } from "./search/search.component";
 
 
 @NgModule({
   declarations: [
+    AutorskaPravaComponent,
     LoginComponent,
     LoginFormComponent,
     RegistrationFormComponent,
-    AutorskaPravaComponent,
-
+    SearchComponent,
   ],
   imports: [
     MatToolbarModule,

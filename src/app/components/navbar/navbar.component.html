@@ -1,5 +1,9 @@
 <mat-toolbar style="background-color: lightgrey;">
   <span class="example-spacer"></span>
+    <button mat-icon-button *ngIf="role === 'SLUZBENIK'" (click)="generateReport()"
+          [matTooltip]="'Generisanje izveštaja'">
+    <mat-icon>event_note</mat-icon>
+  </button>
   <button mat-icon-button (click)='goToPage("/search")' [matTooltip]="'Search requests'">
     <mat-icon>search</mat-icon>
   </button>
