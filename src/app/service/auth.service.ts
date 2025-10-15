@@ -12,11 +12,10 @@ import * as JsonToXML from "js2xmlparser";
 })
 export class AuthService {
 
-  private readonly authUrl: string;
+  private readonly authUrl='http://localhost:8003/auth';;
 
-  constructor(private http: HttpClient) {
-    this.authUrl = 'http://localhost:8003/auth';
-  }
+  constructor(private http: HttpClient) {}
+  
 
   public login(user: LoginCredentials): Observable<any> {
     let body = {

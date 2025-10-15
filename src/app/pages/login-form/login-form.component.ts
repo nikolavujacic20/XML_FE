@@ -38,7 +38,7 @@ export class LoginFormComponent {
       next: (data:any) => {
         const loginResponseDTO:LoginResponseDto = this.parseLoginResponse(data);
         localStorage.setItem('token', "Bearer " + loginResponseDTO.token.accessToken);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/autorska-prava']);
       },
       error: () => this._snackBar.open("Wrong email or password.", '', {
         duration: 3000,

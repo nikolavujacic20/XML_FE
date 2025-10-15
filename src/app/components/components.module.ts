@@ -19,9 +19,11 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import { NavbarComponent } from "./navbar/navbar.component";
 
 @NgModule({
   declarations: [
+      NavbarComponent,
   ],
   imports: [
     MatToolbarModule,
@@ -47,7 +49,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     MatDatepickerModule
   ],
   exports: [
-
+   NavbarComponent,
   ],
   bootstrap: []
 })

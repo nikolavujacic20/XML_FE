@@ -24,12 +24,15 @@ import {MatListModule} from "@angular/material/list";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { ComponentsModule } from "../components/components.module";
+import { AutorskaPravaComponent } from "./autorska-prava/autorska-prava.component";
+
 
 @NgModule({
   declarations: [
     LoginComponent,
     LoginFormComponent,
     RegistrationFormComponent,
+    AutorskaPravaComponent,
 
   ],
   imports: [
@@ -58,7 +61,6 @@ import { ComponentsModule } from "../components/components.module";
     MatGridListModule
   ],
   exports: [
-    
   ],
   bootstrap: []
 })

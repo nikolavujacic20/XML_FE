@@ -10,7 +10,6 @@ export class Autor {
   pseudonim: string = "";
 
   public isValid(): boolean {
-    console.log(this.anoniman)
     return (this.ime.length > 0 &&
       this.prezime.length > 0 &&
       this.adresa.isValid() &&

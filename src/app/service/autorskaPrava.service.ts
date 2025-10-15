@@ -10,16 +10,13 @@ import * as JsonToXML from "js2xmlparser";
 })
 export class AutorskaPravaService {
 
-  private readonly autorskaPravaUrl: string;
+  private readonly autorskaPravaUrl= 'http://localhost:8001/autorskaPrava';
 
   constructor(private http: HttpClient) {
-    this.autorskaPravaUrl = 'http://localhost:8001/autorskaPrava';
   }
 
   public podnesiZahtev(zahtev: SadrzajZahtevaZaAutorskaPrava): Observable<string> {
-    console.log("PODNOSENJE ZAHTEVA", zahtev)
     const xmlZahtev = JsonToXML.parse("zahtevZaAutorskaPravaDTO", zahtev);
-    console.log(xmlZahtev)
     return this.http.post<string>(this.autorskaPravaUrl, xmlZahtev, AuthService.getHttpOptions());
   }
 
@@ -29,16 +26,15 @@ export class AutorskaPravaService {
 
   public postPrilog(brojPrijave: string, tipPrilog: string, file: any) {
     let formData = new FormData();
-    console.log(brojPrijave);
     let brojPrijaveParts: string[] = brojPrijave.split("/");
     formData.append("file", file);
     return this.http.post<Object>(this.autorskaPravaUrl + "/file-upload/" +
       brojPrijaveParts[0] + "/" + brojPrijaveParts[1] + "/" + tipPrilog, formData, this.getNoContentTypeHttpOptions());
   }
 
-  public saveAfterPrilogAddition(brojPrijaveZiga: string) {
-    let brojPrijaveZigaParts: string[] = brojPrijaveZiga.split("/");
-    return this.http.get<Object>(this.autorskaPravaUrl + "/save/" + brojPrijaveZigaParts[0] + "-" + brojPrijaveZigaParts[1], AuthService.getHttpOptions());
+  public saveAfterPrilogAddition(brojPrijave: string) {
+    const brojPrijaveParts: string[] = brojPrijave.split("/");
+    return this.http.get<Object>(this.autorskaPravaUrl + "/save/" + brojPrijaveParts[0] + "-" + brojPrijaveParts[1], AuthService.getHttpOptions());
   }
 
   public getNoContentTypeHttpOptions() {

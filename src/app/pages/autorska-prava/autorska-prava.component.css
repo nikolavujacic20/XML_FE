@@ -1,0 +1,26 @@
+.gray-background {
+  text-align: center;
+  padding: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+ 
+ 
+}
+
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+  margin-left: 16px;
+}
+
+p {
+  margin-top: 10px;
+}
+
+mat-divider {
+  margin-bottom: 5px;
+}
+
+button:focus {
+  outline: none;
+}
