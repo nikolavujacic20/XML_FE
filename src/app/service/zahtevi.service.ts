@@ -11,7 +11,7 @@ import {MetadataSearchParamsDTO, TextSearchDTO} from "../model/search/SearchPara
 })
 export class ZahteviService {
 
-  private readonly autorskaPravaUrl= 'http://localhost:8001';
+  private readonly autorskaPravaUrl= 'http://localhost:8003';
 
 
   constructor(private http: HttpClient) {

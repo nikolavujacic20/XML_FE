@@ -10,7 +10,7 @@ import * as JsonToXML from "js2xmlparser";
 })
 export class AutorskaPravaService {
 
-  private readonly autorskaPravaUrl= 'http://localhost:8001/autorskaPrava';
+  private readonly autorskaPravaUrl= 'http://localhost:8003/autorskaPrava';
 
   constructor(private http: HttpClient) {
   }
